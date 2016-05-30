@@ -22,8 +22,13 @@ function getLang(locale) {
 }
 
 module.exports = function(options){
+  var localStorage = options.externalLocalStorage || window.localStorage;
   var element = options.element;
   var pollId = element.getAttribute('data-poll-id');
+  var voteId;
+  if (localStorage) {
+    voteId = localStorage.getItem('polldozer_' + pollId);
+  }
   var langStrings = getLang(options.locale);
 
   var renderForm = function(poll){
@@ -40,7 +45,13 @@ module.exports = function(options){
       }
       if ( ! answerId) { return; }
       options.corsRequestFn({
-        onSuccess: renderResult,
+        onSuccess: function(poll){
+          localStorage.setItem('polldozer_' + poll._id, poll.vote_id);
+          renderResult(poll);
+          if (options.onVote) {
+            options.onVote(poll);
+          }
+        },
         onFailure: function(xhrData){
           if (xhrData && xhrData.responseJSON && xhrData.responseJSON.errors && xhrData.responseJSON.errors.length) {
             element.innerHTML = '<h4 class="polldozer-errors">' + xhrData.responseJSON.errors.join(', ') + '</h4>';
@@ -64,7 +75,7 @@ module.exports = function(options){
   };
 
   var initWithData = function(poll){
-    if (poll.ip_has_voted || poll.finished) {
+    if (poll.ip_has_voted || poll.finished || ! localStorage) {
       renderResult(poll);
     }
     else {
@@ -84,6 +95,6 @@ module.exports = function(options){
     options.corsRequestFn({
       onSuccess: initWithData,
       onFailure: function() {}
-    }).get(options.apiUrl + 'api/v1/polls/' + pollId + '.json');
+    }).get(options.apiUrl + 'api/v1/polls/' + pollId + '.json' + (voteId ? ('?vote_id=' + voteId) : ''));
   }
 };

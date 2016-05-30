@@ -103,9 +103,9 @@ describe('create poll', function () {
       corsRequestFn: corsRequestFn,
       locale: 'en',
       apiUrl: 'http://localhost:3000/',
-      onSuccess: function(id){
+      onCreate: function(poll){
         try {
-          expect(id).to.equal('573a3d2ed1bd031a0f000000');
+          expect(poll._id).to.equal('573a3d2ed1bd031a0f000000');
         }
         catch (e) {
           done(e);

@@ -3,6 +3,7 @@
   "unused": true,
   "mocha": true,
   "node": true,
+  "browser": true,
   "indent": 2,
   "maxlen": 130,
   "trailing": true,

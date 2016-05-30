@@ -2,6 +2,11 @@ var expect = require('chai').expect;
 var vote = require('../vote.js');
 var jsdomDocument = require('jsdom').jsdom();
 
+var externalLocalStorage = {
+  getItem: function(){},
+  setItem: function(){}
+};
+
 var poll = {
   "_id":"573a3d2ed1bd031a0f000000",
   "title":"yoo",
@@ -44,6 +49,7 @@ describe('vote poll', function () {
     var el = jsdomDocument.createElement('div');
     el.setAttribute('data-poll-id', '573a3d2ed1bd031a0f000000');
     vote({
+      externalLocalStorage: externalLocalStorage,
       element: el,
       corsRequestFn: corsRequestFn,
       apiUrl: 'http://localhost:3000/',
@@ -83,8 +89,47 @@ describe('vote poll', function () {
     var el = jsdomDocument.createElement('div');
     el.setAttribute('data-poll-id', '573a3d2ed1bd031a0f000000');
     vote({
+      externalLocalStorage: externalLocalStorage,
       element: el,
       corsRequestFn: corsRequestFn,
+      apiUrl: 'http://localhost:3000/',
+      locale: 'en'
+    });
+
+    el.querySelectorAll('input')[1].checked = true;
+    var event = jsdomDocument.createEvent('HTMLEvents');
+    event.initEvent('submit', true, true);
+    el.querySelector('form').dispatchEvent(event);
+  });
+
+  it('should call onVote on vote', function(done){
+    var corsRequestFn = function(options) {
+      return {
+        get: function() {
+          options.onSuccess(poll);
+        },
+        post: function(url) {
+          options.onSuccess(poll);
+        }
+      };
+    };
+
+    var el = jsdomDocument.createElement('div');
+    el.setAttribute('data-poll-id', '573a3d2ed1bd031a0f000000');
+    vote({
+      externalLocalStorage: externalLocalStorage,
+      element: el,
+      corsRequestFn: corsRequestFn,
+      onVote: function(poll){
+        try {
+          expect(poll._id).to.equal('573a3d2ed1bd031a0f000000');
+        }
+        catch (e) {
+          done(e);
+          return;
+        }
+        done();
+      },
       apiUrl: 'http://localhost:3000/',
       locale: 'en'
     });
@@ -110,6 +155,7 @@ describe('vote poll', function () {
     var el = jsdomDocument.createElement('div');
     el.setAttribute('data-poll-id', '573a3d2ed1bd031a0f000000');
     vote({
+      externalLocalStorage: externalLocalStorage,
       element: el,
       corsRequestFn: corsRequestFn,
       apiUrl: 'http://localhost:3000/',
@@ -135,6 +181,7 @@ describe('vote poll', function () {
     var el = jsdomDocument.createElement('div');
     el.setAttribute('data-poll-id', '573a3d2ed1bd031a0f000000');
     vote({
+      externalLocalStorage: externalLocalStorage,
       element: el,
       corsRequestFn: corsRequestFn,
       apiUrl: 'http://localhost:3000/',
@@ -173,6 +220,7 @@ describe('vote poll', function () {
     var el = jsdomDocument.createElement('div');
     el.setAttribute('data-poll-id', '573a3d2ed1bd031a0f000000');
     vote({
+      externalLocalStorage: externalLocalStorage,
       element: el,
       corsRequestFn: corsRequestFn,
       apiUrl: 'http://localhost:3000/',
@@ -200,6 +248,7 @@ describe('vote poll', function () {
     var el = jsdomDocument.createElement('div');
     el.setAttribute('data-poll-id', '573a3d2ed1bd031a0f000000');
     vote({
+      externalLocalStorage: externalLocalStorage,
       element: el,
       corsRequestFn: corsRequestFn,
       apiUrl: 'http://localhost:3000/',
@@ -226,6 +275,7 @@ describe('vote poll', function () {
     var el = jsdomDocument.createElement('div');
     el.setAttribute('data-poll-id', '573a3d2ed1bd031a0f000000');
     vote({
+      externalLocalStorage: externalLocalStorage,
       element: el,
       corsRequestFn: corsRequestFn,
       locale: 'de',
@@ -250,6 +300,7 @@ describe('vote poll', function () {
     var el = jsdomDocument.createElement('div');
     el.setAttribute('data-poll-id', '573a3d2ed1bd031a0f000000');
     vote({
+      externalLocalStorage: externalLocalStorage,
       element: el,
       corsRequestFn: corsRequestFn,
       apiUrl: 'http://localhost:3000/'

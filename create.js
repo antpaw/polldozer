@@ -132,9 +132,9 @@ module.exports = function(options){
       }
     }
     options.corsRequestFn({
-      onSuccess: function(data){
+      onSuccess: function(poll){
         element.innerHTML = '<h3>' + langStrings.title + '</h3>';
-        options.onSuccess(data._id);
+        options.onCreate(poll);
       },
       onFailure: function(xhrData){
         if (xhrData && xhrData.responseJSON && xhrData.responseJSON.errors && xhrData.responseJSON.errors.length) {
