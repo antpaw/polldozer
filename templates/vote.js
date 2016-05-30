@@ -3,12 +3,15 @@ var metaPartial = require('./_meta.js');
 
 module.exports = function(poll, langStrings, validUntil) {
   var html = '<form>';
+  var voteId;
   html += '<h3>' + _(poll.title) + '</h3>';
   html += '<ul>';
   for (var i = 0; i < poll.answers.length; i++) {
+    voteId = 'polldozer_vote_' + poll._id + '_' + poll.answers[i]._id;
     html += '<li>';
-    html += '<h5>' + _(poll.answers[i].title) + '</h5>';
-    html += '<input class="polldozer-js-answer" type="radio" name="answer_id" value="' + poll.answers[i]._id + '" />';
+    html += '<label for="' + voteId + '"><h5>' + _(poll.answers[i].title) + '</h5></label>';
+    html += '<input id="' + voteId + '" class="polldozer-js-answer"';
+    html += ' type="radio" name="answer_id" value="' + poll.answers[i]._id + '" />';
     html += '</li>';
   }
   html += '</ul>';

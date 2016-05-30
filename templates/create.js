@@ -30,17 +30,19 @@ module.exports = function(langStrings) {
     }
     html += ' />';
     if (hideAnswer) {
-      html += '<a class="polldozer-js-remove-choice">&times;</a>';
+      html += ' <a href="#" class="polldozer-js-remove-choice">&times;</a>';
     }
     html += '</li>';
   }
   html += '</ul>';
   html += '<p><a href="#" class="polldozer-button polldozer-js-add-choice">' + langStrings.addChoice + '</a></p>';
-  html += '<p>' + langStrings.lengthTitle + ': <a class="polldozer-js-change-length" href="#">' + langStrings.defaultLength + '</a>';
+  html += '<p>' + langStrings.lengthTitle + ': ';
+  html += '<a class="polldozer-js-change-length" href="#">' + langStrings.defaultLength + '</a>';
   html += '<span class="polldozer-js-lenght-inputs polldozer-is-hide">';
   html += ' ' + langStrings.lengthDays + ': ' + _selectTag('days', 8, 1);
   html += ' ' + langStrings.lengthHours + ': ' + _selectTag('hours', 24);
   html += ' ' + langStrings.lengthMinutes + ': ' + _selectTag('minutes', 60);
-  html += '</span></p></ul><input class="polldozer-js-submit polldozer-button" type="submit" value=' + langStrings.submit + '></form>';
+  html += '</span></p></ul>';
+  html += '<input class="polldozer-js-submit polldozer-button" type="submit" value=' + langStrings.submit + '></form>';
   return html;
 };
