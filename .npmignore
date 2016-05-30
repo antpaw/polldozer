@@ -15,6 +15,7 @@ coverage
 .DS_Store
 test
 dist
+webpack.config.js
 .editorconfig
 .jshintignore
 .jshintrc

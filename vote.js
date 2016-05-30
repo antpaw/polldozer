@@ -1,21 +1,23 @@
+var relativeTime = require('./lib/relative_time.js');
 var templateVote = require('./templates/vote.js');
 var templateStats = require('./templates/stats.js');
-
-var lang = {
-  de: {
-    title: 'Stelle eine Frage…',
-    finalResult: 'Final result',
-    submit: 'Absenden'
-  },
-  en: {
-    finalResult: 'Final result',
-    submit: 'Vote',
-    votes_many: 'Votes',
-    votes_one: 'Vote'
-  }
-};
+var metaPartial = require('./templates/_meta.js');
 
 function getLang(locale) {
+  var lang = {
+    de: {
+      finalResult: 'Finales Resultat',
+      submit: 'Abstimmen',
+      votesMany: 'Stimmen',
+      votesOne: 'Stimme'
+    },
+    en: {
+      finalResult: 'Final result',
+      submit: 'Vote',
+      votesMany: 'votes',
+      votesOne: 'vote'
+    }
+  };
   return lang[locale] || lang.en;
 }
 
@@ -25,7 +27,7 @@ module.exports = function(options){
   var langStrings = getLang(options.locale);
 
   var renderForm = function(poll){
-    element.innerHTML = templateVote(poll, langStrings);
+    element.innerHTML = templateVote(poll, langStrings, relativeTime(new Date(poll.valid_until * 1000), options.locale));
     var submitVote = function(e){
       // TODO: remove `submit` event
       e.preventDefault();
@@ -58,7 +60,7 @@ module.exports = function(options){
   };
 
   var renderResult = function(poll){
-    element.innerHTML = templateStats(poll, langStrings);
+    element.innerHTML = templateStats(poll, langStrings, relativeTime(new Date(poll.valid_until * 1000), options.locale));
   };
 
   var initWithData = function(poll){
@@ -68,6 +70,11 @@ module.exports = function(options){
     else {
       renderForm(poll);
     }
+    setInterval(function(){
+      element.querySelector('.poll-js-meta').innerHTML = metaPartial(
+        poll, langStrings, relativeTime(new Date(poll.valid_until * 1000), options.locale)
+      );
+    }, 60000);
   };
 
   if (options.pollData) {

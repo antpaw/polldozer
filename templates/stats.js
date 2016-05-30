@@ -1,6 +1,7 @@
 var _ = require('./_escape.js');
+var metaPartial = require('./_meta.js');
 
-module.exports = function(poll, langStrings) {
+module.exports = function(poll, langStrings, validUntil) {
   var html = '<form>';
   html += '<h3>' + _(poll.title) + '</h3>';
   html += '<ul>';
@@ -11,6 +12,8 @@ module.exports = function(poll, langStrings) {
     html += '<p>' + langStrings.total + ': ' + poll.answers[i].percent_total + '%</p>';
     html += '</li>';
   }
-  html += '</ul></form>';
+  html += '</ul>';
+  html += '<p class="poll-js-meta">' + metaPartial(poll, langStrings, validUntil) + '</p>';
+  html += '</form>';
   return html;
 };

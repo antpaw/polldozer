@@ -6,9 +6,9 @@ module.exports = {
     Create: './create.js'
   },
   output: {
-		filename: "[name].js",
-    path: path.join('../polldozer/app/assets/javascripts/lib'),
-		library: ["Polldozer", "[name]"],
-		libraryTarget: "var"
+		filename: '[name].js',
+    path: path.join('../dist/'),
+		library: ['Polldozer', '[name]'],
+		libraryTarget: 'var'
   }
 };

@@ -23,7 +23,8 @@ module.exports = function(langStrings) {
       html += ' poll-is-hide';
     }
     html += '">';
-    html += '<input class="poll-js-answer-input" name="answer_titles[' + i + ']" placeholder="' + langStrings.answerTitles[i] + '"';
+    html += '<input class="poll-js-answer-input" ';
+    html += 'name="answer_titles[' + i + ']" placeholder="' + langStrings.answerTitles[i] + '"';
     if ( ! hideAnswer) {
       html += ' required';
     }

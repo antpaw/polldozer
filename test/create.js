@@ -218,7 +218,6 @@ describe('create poll', function () {
     var el = createDefaultEl();
     var selectDaysElem = el.querySelector('.poll-js-select-days');
     var selectHoursElem = el.querySelector('.poll-js-select-hours');
-    var selectMinutesElem = el.querySelector('.poll-js-select-minutes');
 
     selectDaysElem.selectedIndex = 2;
     var event = jsdomDocument.createEvent('HTMLEvents');
@@ -232,7 +231,6 @@ describe('create poll', function () {
     var el = createDefaultEl();
     var selectDaysElem = el.querySelector('.poll-js-select-days');
     var selectHoursElem = el.querySelector('.poll-js-select-hours');
-    var selectMinutesElem = el.querySelector('.poll-js-select-minutes');
 
     selectDaysElem.selectedIndex = 0;
     var event = jsdomDocument.createEvent('HTMLEvents');

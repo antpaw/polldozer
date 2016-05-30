@@ -5,7 +5,7 @@ var jsdomDocument = require('jsdom').jsdom();
 var poll = {
   "_id":"573a3d2ed1bd031a0f000000",
   "title":"yoo",
-  "valid_until":1463262225,
+  "valid_until":1464635407,
   "finished":false,
   "total_votes_count":1,
   "ip_has_voted":false,
@@ -232,7 +232,7 @@ describe('vote poll', function () {
       apiUrl: 'http://localhost:3000/'
     });
 
-    expect(el.querySelector('input[type="submit"]').value).to.equal('Absenden');
+    expect(el.querySelector('input[type="submit"]').value).to.equal('Abstimmen');
   });
 
   it('should fallback with locale to "en"', function(){

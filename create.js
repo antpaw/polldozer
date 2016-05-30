@@ -1,33 +1,38 @@
 var template = require('./templates/create.js');
 
-var lang = {
-  de: {
-    title: 'Stelle eine Frage…',
-    answerTitles: ['Auswahl 1', 'Auswahl 2', 'Auswahl 3 (optional)', 'Auswahl 4 (optional)', 'Auswahl 5 (optional)', 'Auswahl 6 (optional)', 'Auswahl 7 (optional)', 'Auswahl 8 (optional)'],
-    addChoice: '+ Auswahl hinzufügen',
-    lengthTitle: 'Dauer der Umfrage',
-    defaultLength: '1 Tag',
-    lengthDays: 'Tage',
-    lengthHours: 'Stunden',
-    lengthMinutes: 'Min',
-    success: 'Poll created',
-    submit: 'Umfrage hinzufügen'
-  },
-  en: {
-    title: 'Ask a question…',
-    answerTitles: ['Choice 1', 'Choice 2', 'Choice 3 (optional)', 'Choice 4 (optional)', 'Choice 5 (optional)', 'Choice 6 (optional)', 'Choice 7 (optional)', 'Choice 8 (optional)'],
-    addChoice: '+ Add a choice',
-    lengthTitle: 'Poll length',
-    defaultLength: '1 day',
-    lengthDays: 'Days',
-    lengthHours: 'Hours',
-    lengthMinutes: 'Min',
-    success: 'Poll created',
-    submit: 'Add Poll'
-  }
-};
-
 function getLang(locale) {
+  var lang = {
+    de: {
+      title: 'Stelle eine Frage…',
+      answerTitles: [
+        'Auswahl 1', 'Auswahl 2', 'Auswahl 3 (optional)', 'Auswahl 4 (optional)',
+        'Auswahl 5 (optional)', 'Auswahl 6 (optional)', 'Auswahl 7 (optional)', 'Auswahl 8 (optional)'
+      ],
+      addChoice: '+ Auswahl hinzufügen',
+      lengthTitle: 'Dauer der Umfrage',
+      defaultLength: '1 Tag',
+      lengthDays: 'Tage',
+      lengthHours: 'Stunden',
+      lengthMinutes: 'Min',
+      success: 'Poll created',
+      submit: 'Umfrage hinzufügen'
+    },
+    en: {
+      title: 'Ask a question…',
+      answerTitles: [
+        'Choice 1', 'Choice 2', 'Choice 3 (optional)', 'Choice 4 (optional)',
+        'Choice 5 (optional)', 'Choice 6 (optional)', 'Choice 7 (optional)', 'Choice 8 (optional)'
+      ],
+      addChoice: '+ Add a choice',
+      lengthTitle: 'Poll length',
+      defaultLength: '1 day',
+      lengthDays: 'Days',
+      lengthHours: 'Hours',
+      lengthMinutes: 'Min',
+      success: 'Poll created',
+      submit: 'Add Poll'
+    }
+  };
   return lang[locale] || lang.en;
 }
 

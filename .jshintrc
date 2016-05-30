@@ -2,5 +2,9 @@
   "undef": true,
   "unused": true,
   "mocha": true,
-  "node": true
+  "node": true,
+  "indent": 2,
+  "maxlen": 130,
+  "trailing": true,
+  "curly": true
 }
