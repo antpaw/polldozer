@@ -15,8 +15,8 @@ var poll = {
   "total_votes_count":1,
   "ip_has_voted":false,
   "answers":[
-    {"_id":"573a3d2ed1bd031a0f000001","title":"sure","vote_count":1,"percent_total":100,"winner":true},
-    {"_id":"573a3d2ed1bd031a0f000002","title":"nope","vote_count":0,"percent_total":0,"winner":false}
+    {"_id":"573a3d2ed1bd031a0f000001","title":"sure","vote_count":1,"percent":100,"winner":true},
+    {"_id":"573a3d2ed1bd031a0f000002","title":"nope","vote_count":0,"percent":0,"winner":false}
   ]
 };
 var poll2 = {
@@ -27,8 +27,8 @@ var poll2 = {
   "total_votes_count":1,
   "ip_has_voted":true,
   "answers":[
-    {"_id":"573a3d2ed1bd031a0f000001","title":"sure","vote_count":1,"percent_total":100,"winner":true},
-    {"_id":"573a3d2ed1bd031a0f000002","title":"nope","vote_count":0,"percent_total":0,"winner":false}
+    {"_id":"573a3d2ed1bd031a0f000001","title":"sure","vote_count":1,"percent":100,"winner":true},
+    {"_id":"573a3d2ed1bd031a0f000002","title":"nope","vote_count":0,"percent":0,"winner":false}
   ]
 };
 
@@ -108,7 +108,7 @@ describe('vote poll', function () {
         get: function() {
           options.onSuccess(poll);
         },
-        post: function(url) {
+        post: function() {
           options.onSuccess(poll);
         }
       };
@@ -282,7 +282,7 @@ describe('vote poll', function () {
       apiUrl: 'http://localhost:3000/'
     });
 
-    expect(el.querySelector('input[type="submit"]').value).to.equal('Abstimmen');
+    expect(el.querySelector('button').innerHTML).to.equal('Abstimmen');
   });
 
   it('should fallback with locale to "en"', function(){
@@ -306,7 +306,7 @@ describe('vote poll', function () {
       apiUrl: 'http://localhost:3000/'
     });
 
-    expect(el.querySelector('input[type="submit"]').value).to.equal('Vote');
+    expect(el.querySelector('button').innerHTML).to.equal('Vote');
   });
 
 });

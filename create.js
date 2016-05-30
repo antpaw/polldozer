@@ -66,7 +66,8 @@ module.exports = function(options){
       removeClass(choiceElem, 'polldozer-is-hide');
 
       var removeChoiceButton = choiceElem.querySelector('.polldozer-js-remove-choice');
-      var removeChoiceFiled = function(){
+      var removeChoiceFiled = function(e){
+        e.preventDefault();
         addClass(choiceElem, 'polldozer-is-hide');
         removeClass(addChoiceButton, 'polldozer-is-hide');
 

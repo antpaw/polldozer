@@ -6,13 +6,13 @@ var metaPartial = require('./templates/_meta.js');
 function getLang(locale) {
   var lang = {
     de: {
-      finalResult: 'Finales Resultat',
+      finalResult: 'Endergebnisse',
       submit: 'Abstimmen',
       votesMany: 'Stimmen',
       votesOne: 'Stimme'
     },
     en: {
-      finalResult: 'Final result',
+      finalResult: 'Final results',
       submit: 'Vote',
       votesMany: 'votes',
       votesOne: 'vote'

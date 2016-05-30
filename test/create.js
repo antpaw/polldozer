@@ -10,8 +10,8 @@ var poll = {
   "total_votes_count":1,
   "ip_has_voted":true,
   "answers":[
-    {"_id":"573a3d2ed1bd031a0f000001","title":"sure","vote_count":1,"percent_total":100,"winner":true},
-    {"_id":"573a3d2ed1bd031a0f000002","title":"nope","vote_count":0,"percent_total":0,"winner":false}
+    {"_id":"573a3d2ed1bd031a0f000001","title":"sure","vote_count":1,"percent":100,"winner":true},
+    {"_id":"573a3d2ed1bd031a0f000002","title":"nope","vote_count":0,"percent":0,"winner":false}
   ]
 };
 
@@ -63,7 +63,7 @@ describe('create poll', function () {
     });
 
     expect(el.querySelectorAll('li').length).to.equal(8);
-    expect(el.querySelectorAll('input').length).to.equal(10);
+    expect(el.querySelectorAll('input').length).to.equal(9);
   });
 
 
@@ -136,7 +136,7 @@ describe('create poll', function () {
           });
           try {
             expect(el.querySelector('.polldozer-errors').innerHTML).to.equal('not created, foo bar');
-            expect(el.querySelectorAll('input').length).to.equal(10);
+            expect(el.querySelectorAll('input').length).to.equal(9);
           }
           catch (e) {
             done(e);

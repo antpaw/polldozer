@@ -5,6 +5,7 @@ module.exports = function(poll, langStrings, timeLeft) {
       html += poll.total_votes_count + ' ' + langStrings.votesOne;
     }
     else {
+      // TODO: format count
       html += poll.total_votes_count + ' ' + langStrings.votesMany;
     }
     html += ' • ';
