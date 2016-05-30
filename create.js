@@ -49,6 +49,7 @@ module.exports = function(options){
   var langStrings = getLang(options.locale);
   element.innerHTML = template(langStrings);
   var errorsElem = element.querySelector('.polldozer-js-errors');
+  var titleInputElem = element.querySelector('.polldozer-js-title-input');
   var selectDaysElem = element.querySelector('.polldozer-js-select-days');
   var selectHoursElem = element.querySelector('.polldozer-js-select-hours');
   var selectMinutesElem = element.querySelector('.polldozer-js-select-minutes');
@@ -144,7 +145,7 @@ module.exports = function(options){
         }
       }
     }).post(options.apiUrl + 'api/v1/polls.json', {
-      poll_title: element.querySelector('.polldozer-js-title-input').value,
+      poll_title: titleInputElem.value,
       date_offset: {
         days: selectDaysElem.value,
         hours: selectHoursElem.value,

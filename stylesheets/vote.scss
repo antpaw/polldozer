@@ -1,0 +1,73 @@
+@import '_shared.scss';
+
+.polldozer-is-hide {
+  display: none;
+}
+.polldozer-title {
+  margin: 0.5em 0;
+  margin: 0.5rem 0;
+}
+.polldozer-answer-left-box {
+  display: inline-block;
+  width: 4em;
+  text-align: center;
+  height: 1em;
+}
+.polldozer-answer-label {
+  cursor: pointer;
+  display: block;
+}
+.polldozer-answer-label:hover {
+  color: #77C7F7;
+}
+.polldozer-answer-percent {
+  text-align: right;
+}
+.polldozer-answers {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.polldozer-answer {
+  position: relative;
+  margin: 0.25em 0;
+  margin: 0.25rem 0;
+  padding: 0.5em;
+  padding: 0.5rem;
+}
+.polldozer-answer-title {
+  margin-left: 0.5em;
+}
+.polldozer-footer {
+  margin: 0.5em 0;
+  margin: 0.5rem 0;
+}
+.polldozer-answer-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  border-radius: 3px;
+  background-color: #E1E8ED;
+}
+.polldozer-stats-holder {
+  position: relative;
+}
+.polldozer-answer-winner {
+  background-color: #77C7F7;
+}
+.polldozer-answer-users-vote:after {
+  content: '✓';
+  position: absolute;
+  top: 0.5em;
+  top: 0.5rem;
+  font-weight: bold;
+  font-size: 1.5em;
+  right: 1em;
+}
+
+.polldozer-meta {
+  color: gray;
+  display: inline-block;
+  padding-top: 0.5em;
+}

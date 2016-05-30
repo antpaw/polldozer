@@ -1,0 +1,51 @@
+@import '_shared.scss';
+
+.polldozer-is-hide {
+  display: none;
+}
+.polldozer-holder a {
+  color: #77C7F7;
+  text-decoration: none;
+}
+.polldozer-holder a:hover {
+  background: none;
+  text-decoration: underline;
+}
+.polldozer-remove-choice {
+  font-size: 1.5em;
+  position: relative;
+  top: 0.1em;
+}
+.polldozer-button-line {
+  margin: 0.5em 0;
+  margin: 0.5rem 0;
+}
+.polldozer-add-choice-line {
+  margin-top: 0;
+}
+.polldozer-answer-input,
+.polldozer-title-input {
+  box-sizing: border-box;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 2px solid #E1E8ED;
+}
+.polldozer-answer-input:focus,
+.polldozer-title-input:focus {
+  outline: 0;
+  border-color: #77C7F7;
+}
+.polldozer-title-input {
+  margin: 0.5em 0;
+  margin: 0.5rem 0;
+  width: 100%;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.polldozer-answer-input {
+  margin: 0.25em 0;
+  margin: 0.25rem 0;
+}
+.polldozer-answer-input {
+  width: 90%;
+}

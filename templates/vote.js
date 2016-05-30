@@ -13,7 +13,7 @@ module.exports = function(poll, langStrings, validUntil) {
     voteId = 'polldozer_vote_' + poll._id + '_' + poll.answers[i]._id;
     html += '<li><label class="polldozer-answer polldozer-answer-label" for="' + voteId + '">';
     html += '<span class="polldozer-answer-left-box"><input id="' + voteId + '" value="' + answer._id + '" required';
-    html += ' class="polldozer-js-answer polldozer-checkbox" type="radio" name="answer_id" /></span>';
+    html += ' class="polldozer-js-answer polldozer-checkbox" type="radio" name="answer_id" /></span> ';
     html += '<span class="polldozer-answer-title">' + _(answer.title) + '</span>';
     html += '</label></li>';
   }

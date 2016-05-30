@@ -12,8 +12,10 @@ module.exports = function(poll, langStrings, validUntil) {
     html += '<div class="polldozer-answer-bar';
     html += (answer.winner ? ' polldozer-answer-winner' : '') + (answer.users_vote ? ' polldozer-answer-users-vote' : '') + '"';
     html += ' style="width: ' + answer.percent + '%"></div>';
-    html += '<strong class="polldozer-answer-percent polldozer-answer-left-box">' + answer.percent + '%</strong> ';
+    html += '<div class="polldozer-stats-holder">';
+    html += '<span class="polldozer-answer-percent polldozer-answer-left-box"><strong>' + answer.percent + '</strong>%</span> ';
     html += '<span class="polldozer-answer-title">' + _(answer.title) + '</span>';
+    html += '</div>';
     html += '</li>';
   }
   html += '</ul>';
