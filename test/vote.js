@@ -158,7 +158,7 @@ describe('vote poll', function () {
             }
           });
           try {
-            expect(el.querySelector('.poll-errors').innerHTML).to.equal('not created, foo bar');
+            expect(el.querySelector('.polldozer-errors').innerHTML).to.equal('not created, foo bar');
             expect(el.querySelectorAll('input').length).to.equal(0);
           }
           catch (e) {

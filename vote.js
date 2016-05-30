@@ -31,7 +31,7 @@ module.exports = function(options){
     var submitVote = function(e){
       // TODO: remove `submit` event
       e.preventDefault();
-      var answerElems = element.querySelectorAll('.poll-js-answer');
+      var answerElems = element.querySelectorAll('.polldozer-js-answer');
       var answerId;
       for (var i = 0; i < answerElems.length; i++) {
         if (answerElems[i].checked) {
@@ -43,7 +43,7 @@ module.exports = function(options){
         onSuccess: renderResult,
         onFailure: function(xhrData){
           if (xhrData && xhrData.responseJSON && xhrData.responseJSON.errors && xhrData.responseJSON.errors.length) {
-            element.innerHTML = '<h4 class="poll-errors">' + xhrData.responseJSON.errors.join(', ') + '</h4>';
+            element.innerHTML = '<h4 class="polldozer-errors">' + xhrData.responseJSON.errors.join(', ') + '</h4>';
           }
         }
       }).post(options.apiUrl + 'api/v1/polls/' + pollId + '/vote.json', {
@@ -71,7 +71,7 @@ module.exports = function(options){
       renderForm(poll);
     }
     setInterval(function(){
-      element.querySelector('.poll-js-meta').innerHTML = metaPartial(
+      element.querySelector('.polldozer-js-meta').innerHTML = metaPartial(
         poll, langStrings, relativeTime(new Date(poll.valid_until * 1000), options.locale)
       );
     }, 60000);

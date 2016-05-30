@@ -114,7 +114,7 @@ describe('create poll', function () {
       }
     });
 
-    el.querySelector('.poll-js-title-input').value = 'vawef';
+    el.querySelector('.polldozer-js-title-input').value = 'vawef';
     el.querySelectorAll('input')[1].value = 'answer 1';
     el.querySelectorAll('input')[2].value = 'answer 2';
     var event = jsdomDocument.createEvent('HTMLEvents');
@@ -135,7 +135,7 @@ describe('create poll', function () {
             }
           });
           try {
-            expect(el.querySelector('.poll-errors').innerHTML).to.equal('not created, foo bar');
+            expect(el.querySelector('.polldozer-errors').innerHTML).to.equal('not created, foo bar');
             expect(el.querySelectorAll('input').length).to.equal(10);
           }
           catch (e) {
@@ -156,7 +156,7 @@ describe('create poll', function () {
       locale: 'en'
     });
 
-    el.querySelector('.poll-js-title-input').value = 'vawef';
+    el.querySelector('.polldozer-js-title-input').value = 'vawef';
     el.querySelectorAll('input')[1].value = 'answer 1';
     el.querySelectorAll('input')[2].value = 'answer 2';
     var event = jsdomDocument.createEvent('HTMLEvents');
@@ -168,31 +168,31 @@ describe('create poll', function () {
   it('should show additional choice filed', function(){
     var el = createDefaultEl();
 
-    el.querySelector('.poll-js-add-choice').click();
-    expect(el.querySelectorAll('.poll-js-choice.poll-is-hide').length).to.equal(5);
-    el.querySelector('.poll-js-add-choice').click();
-    expect(el.querySelectorAll('.poll-js-choice.poll-is-hide').length).to.equal(4);
+    el.querySelector('.polldozer-js-add-choice').click();
+    expect(el.querySelectorAll('.polldozer-js-choice.polldozer-is-hide').length).to.equal(5);
+    el.querySelector('.polldozer-js-add-choice').click();
+    expect(el.querySelectorAll('.polldozer-js-choice.polldozer-is-hide').length).to.equal(4);
   });
 
   it('should remove "add-choice" button on max choices', function(){
     var el = createDefaultEl();
 
-    var button = el.querySelector('.poll-js-add-choice');
+    var button = el.querySelector('.polldozer-js-add-choice');
     button.click();
     button.click();
-    expect(button.classList.contains('poll-is-hide')).to.equal(false);
+    expect(button.classList.contains('polldozer-is-hide')).to.equal(false);
     button.click();
     button.click();
     button.click();
     button.click();
     button.click();
-    expect(button.classList.contains('poll-is-hide')).to.equal(true);
+    expect(button.classList.contains('polldozer-is-hide')).to.equal(true);
   });
 
   it('should reenable "add-choice" button on remove of a choice', function(){
     var el = createDefaultEl();
 
-    var button = el.querySelector('.poll-js-add-choice');
+    var button = el.querySelector('.polldozer-js-add-choice');
     button.click();
     button.click();
     button.click();
@@ -200,24 +200,24 @@ describe('create poll', function () {
     button.click();
     button.click();
     button.click();
-    expect(el.querySelectorAll('.poll-js-choice.poll-is-hide').length).to.equal(0);
-    el.querySelector('.poll-js-remove-choice').click();
-    expect(el.querySelectorAll('.poll-js-choice.poll-is-hide').length).to.equal(1);
-    expect(button.classList.contains('poll-is-hide')).to.equal(false);
+    expect(el.querySelectorAll('.polldozer-js-choice.polldozer-is-hide').length).to.equal(0);
+    el.querySelector('.polldozer-js-remove-choice').click();
+    expect(el.querySelectorAll('.polldozer-js-choice.polldozer-is-hide').length).to.equal(1);
+    expect(button.classList.contains('polldozer-is-hide')).to.equal(false);
   });
 
   it('should open time length inputs', function(){
     var el = createDefaultEl();
 
-    expect(el.querySelector('.poll-js-lenght-inputs').classList.contains('poll-is-hide')).to.equal(true);
-    el.querySelector('.poll-js-change-length').click();
-    expect(el.querySelector('.poll-js-lenght-inputs').classList.contains('poll-is-hide')).to.equal(false);
+    expect(el.querySelector('.polldozer-js-lenght-inputs').classList.contains('polldozer-is-hide')).to.equal(true);
+    el.querySelector('.polldozer-js-change-length').click();
+    expect(el.querySelector('.polldozer-js-lenght-inputs').classList.contains('polldozer-is-hide')).to.equal(false);
   });
 
   it('should not change hours on day change to zeor', function(){
     var el = createDefaultEl();
-    var selectDaysElem = el.querySelector('.poll-js-select-days');
-    var selectHoursElem = el.querySelector('.poll-js-select-hours');
+    var selectDaysElem = el.querySelector('.polldozer-js-select-days');
+    var selectHoursElem = el.querySelector('.polldozer-js-select-hours');
 
     selectDaysElem.selectedIndex = 2;
     var event = jsdomDocument.createEvent('HTMLEvents');
@@ -229,8 +229,8 @@ describe('create poll', function () {
 
   it('should change hours on day change to zeor', function(){
     var el = createDefaultEl();
-    var selectDaysElem = el.querySelector('.poll-js-select-days');
-    var selectHoursElem = el.querySelector('.poll-js-select-hours');
+    var selectDaysElem = el.querySelector('.polldozer-js-select-days');
+    var selectHoursElem = el.querySelector('.polldozer-js-select-hours');
 
     selectDaysElem.selectedIndex = 0;
     var event = jsdomDocument.createEvent('HTMLEvents');
@@ -242,9 +242,9 @@ describe('create poll', function () {
 
   it('should not change minutes on hours change to zeor', function(){
     var el = createDefaultEl();
-    var selectDaysElem = el.querySelector('.poll-js-select-days');
-    var selectHoursElem = el.querySelector('.poll-js-select-hours');
-    var selectMinutesElem = el.querySelector('.poll-js-select-minutes');
+    var selectDaysElem = el.querySelector('.polldozer-js-select-days');
+    var selectHoursElem = el.querySelector('.polldozer-js-select-hours');
+    var selectMinutesElem = el.querySelector('.polldozer-js-select-minutes');
 
     selectMinutesElem.selectedIndex = 10;
     selectDaysElem.selectedIndex = 0;
@@ -258,9 +258,9 @@ describe('create poll', function () {
 
   it('should change minutes on hours change to zeor', function(){
     var el = createDefaultEl();
-    var selectDaysElem = el.querySelector('.poll-js-select-days');
-    var selectHoursElem = el.querySelector('.poll-js-select-hours');
-    var selectMinutesElem = el.querySelector('.poll-js-select-minutes');
+    var selectDaysElem = el.querySelector('.polldozer-js-select-days');
+    var selectHoursElem = el.querySelector('.polldozer-js-select-hours');
+    var selectMinutesElem = el.querySelector('.polldozer-js-select-minutes');
 
     selectDaysElem.selectedIndex = 0;
     selectHoursElem.selectedIndex = 0;

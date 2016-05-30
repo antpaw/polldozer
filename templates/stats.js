@@ -13,7 +13,7 @@ module.exports = function(poll, langStrings, validUntil) {
     html += '</li>';
   }
   html += '</ul>';
-  html += '<p class="poll-js-meta">' + metaPartial(poll, langStrings, validUntil) + '</p>';
+  html += '<p class="polldozer-js-meta">' + metaPartial(poll, langStrings, validUntil) + '</p>';
   html += '</form>';
   return html;
 };

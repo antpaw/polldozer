@@ -48,27 +48,27 @@ module.exports = function(options){
   var element = options.element;
   var langStrings = getLang(options.locale);
   element.innerHTML = template(langStrings);
-  var errorsElem = element.querySelector('.poll-js-errors');
-  var selectDaysElem = element.querySelector('.poll-js-select-days');
-  var selectHoursElem = element.querySelector('.poll-js-select-hours');
-  var selectMinutesElem = element.querySelector('.poll-js-select-minutes');
-  var changeLengthButton = element.querySelector('.poll-js-change-length');
-  var addChoiceButton = element.querySelector('.poll-js-add-choice');
+  var errorsElem = element.querySelector('.polldozer-js-errors');
+  var selectDaysElem = element.querySelector('.polldozer-js-select-days');
+  var selectHoursElem = element.querySelector('.polldozer-js-select-hours');
+  var selectMinutesElem = element.querySelector('.polldozer-js-select-minutes');
+  var changeLengthButton = element.querySelector('.polldozer-js-change-length');
+  var addChoiceButton = element.querySelector('.polldozer-js-add-choice');
 
   var showAdditionalChoiceFiled = function(e){
     e.preventDefault();
-    var choiceElements = element.querySelectorAll('.poll-js-choice.poll-is-hide');
+    var choiceElements = element.querySelectorAll('.polldozer-js-choice.polldozer-is-hide');
     var choiceElem = choiceElements[0];
     if (choiceElem) {
       if (choiceElements.length === 1) {
-        addClass(addChoiceButton, 'poll-is-hide');
+        addClass(addChoiceButton, 'polldozer-is-hide');
       }
-      removeClass(choiceElem, 'poll-is-hide');
+      removeClass(choiceElem, 'polldozer-is-hide');
 
-      var removeChoiceButton = choiceElem.querySelector('.poll-js-remove-choice');
+      var removeChoiceButton = choiceElem.querySelector('.polldozer-js-remove-choice');
       var removeChoiceFiled = function(){
-        addClass(choiceElem, 'poll-is-hide');
-        removeClass(addChoiceButton, 'poll-is-hide');
+        addClass(choiceElem, 'polldozer-is-hide');
+        removeClass(addChoiceButton, 'polldozer-is-hide');
 
         if (element.addEventListener) {
           removeChoiceButton.removeEventListener('click', removeChoiceFiled);
@@ -88,8 +88,8 @@ module.exports = function(options){
 
   var showLengthInputs = function(e){
     e.preventDefault();
-    addClass(changeLengthButton, 'poll-is-hide');
-    removeClass(element.querySelector('.poll-js-lenght-inputs'), 'poll-is-hide');
+    addClass(changeLengthButton, 'polldozer-is-hide');
+    removeClass(element.querySelector('.polldozer-js-lenght-inputs'), 'polldozer-is-hide');
   };
 
 
@@ -125,7 +125,7 @@ module.exports = function(options){
   var submitPoll = function(e){
     e.preventDefault();
     var answerTitles = [];
-    var answerInputs = element.querySelectorAll('.poll-js-answer-input');
+    var answerInputs = element.querySelectorAll('.polldozer-js-answer-input');
     for (var i = 0; i < answerInputs.length; i++) {
       if (answerInputs[i].value) {
         answerTitles.push(answerInputs[i].value);
@@ -138,13 +138,13 @@ module.exports = function(options){
       },
       onFailure: function(xhrData){
         if (xhrData && xhrData.responseJSON && xhrData.responseJSON.errors && xhrData.responseJSON.errors.length) {
-          removeClass(errorsElem, 'poll-is-hide');
-          errorsElem.innerHTML = '<h4 class="poll-errors">' + xhrData.responseJSON.errors.join(', ') + '</h4>';
+          removeClass(errorsElem, 'polldozer-is-hide');
+          errorsElem.innerHTML = '<h4 class="polldozer-errors">' + xhrData.responseJSON.errors.join(', ') + '</h4>';
         }
       }
     }).post(options.apiUrl + 'api/v1/polls.json', {
-      poll_title: element.querySelector('.poll-js-title-input').value,
-      date: element.querySelector('.poll-js-select-minutes').value,
+      poll_title: element.querySelector('.polldozer-js-title-input').value,
+      date: element.querySelector('.polldozer-js-select-minutes').value,
       answer_titles: answerTitles
     });
     return false;
