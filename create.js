@@ -145,7 +145,11 @@ module.exports = function(options){
       }
     }).post(options.apiUrl + 'api/v1/polls.json', {
       poll_title: element.querySelector('.polldozer-js-title-input').value,
-      date: element.querySelector('.polldozer-js-select-minutes').value,
+      date_offset: {
+        days: selectDaysElem.value,
+        hours: selectHoursElem.value,
+        minutes: selectMinutesElem.value
+      },
       answer_titles: answerTitles
     });
     return false;

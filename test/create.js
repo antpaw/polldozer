@@ -122,6 +122,48 @@ describe('create poll', function () {
     el.querySelector('form').dispatchEvent(event);
   });
 
+  it('should create with custom date', function(done){
+    var corsRequestFn = function(options) {
+      return {
+        get: function() {
+          options.onSuccess(poll);
+        },
+        post: function(url, data) {
+          try {
+            expect(data.date_offset.days).to.equal('3');
+            expect(data.date_offset.hours).to.equal('10');
+            expect(data.date_offset.minutes).to.equal('10');
+          }
+          catch (e) {
+            done(e);
+            return;
+          }
+          done();
+        }
+      };
+    };
+
+    var el = jsdomDocument.createElement('div');
+    create({
+      element: el,
+      corsRequestFn: corsRequestFn,
+      locale: 'en',
+      apiUrl: 'http://localhost:3000/'
+    });
+
+    el.querySelector('.polldozer-js-title-input').value = 'vawef';
+    el.querySelectorAll('input')[1].value = 'answer 1';
+    el.querySelectorAll('input')[2].value = 'answer 2';
+
+    el.querySelector('.polldozer-js-select-days').selectedIndex = 3;
+    el.querySelector('.polldozer-js-select-hours').selectedIndex = 10;
+    el.querySelector('.polldozer-js-select-minutes').selectedIndex = 10;
+
+    var event = jsdomDocument.createEvent('HTMLEvents');
+    event.initEvent('submit', true, true);
+    el.querySelector('form').dispatchEvent(event);
+  });
+
   it('should render errors on create', function(done){
     var corsRequestFn = function(options) {
       return {
