@@ -68,6 +68,7 @@ describe('create poll', function () {
 
 
   it('should create', function(done){
+    var el = jsdomDocument.createElement('div');
     var corsRequestFn = function(options) {
       return {
         get: function() {
@@ -97,7 +98,6 @@ describe('create poll', function () {
       };
     };
 
-    var el = jsdomDocument.createElement('div');
     create({
       element: el,
       corsRequestFn: corsRequestFn,
@@ -165,6 +165,7 @@ describe('create poll', function () {
   });
 
   it('should render errors on create', function(done){
+    var el = jsdomDocument.createElement('div');
     var corsRequestFn = function(options) {
       return {
         get: function() {
@@ -189,7 +190,6 @@ describe('create poll', function () {
       };
     };
 
-    var el = jsdomDocument.createElement('div');
     el.setAttribute('data-poll-id', '573a3d2ed1bd031a0f000000');
     create({
       element: el,
@@ -206,6 +206,63 @@ describe('create poll', function () {
     el.querySelector('form').dispatchEvent(event);
   });
 
+  it('should disable inputs on "submit"', function(){
+    var corsRequestFn = function() {
+      return {
+        post: function() {
+        }
+      };
+    };
+
+    var el = jsdomDocument.createElement('div');
+    el.setAttribute('data-poll-id', '573a3d2ed1bd031a0f000000');
+    create({
+      element: el,
+      corsRequestFn: corsRequestFn,
+      apiUrl: 'http://localhost:3000/',
+      locale: 'en'
+    });
+
+    el.querySelectorAll('input')[1].value = 'answer 1';
+    el.querySelectorAll('input')[2].value = 'answer 2';
+    var event = jsdomDocument.createEvent('HTMLEvents');
+    event.initEvent('submit', true, true);
+    el.querySelector('form').dispatchEvent(event);
+    expect(el.querySelector('.polldozer-js-submit').disabled).to.equal(true);
+    expect(el.querySelector('.polldozer-js-title-input').disabled).to.equal(true);
+    expect(el.querySelectorAll('.polldozer-js-answer-input')[2].disabled).to.equal(true);
+  });
+
+  it('should reenable inputs on "submit" fail', function(){
+    var corsRequestFn = function(options) {
+      return {
+        post: function() {
+          options.onFailure({
+            responseJSON: {
+              errors: ['not created', 'foo bar']
+            }
+          });
+        }
+      };
+    };
+    var el = jsdomDocument.createElement('div');
+    el.setAttribute('data-poll-id', '573a3d2ed1bd031a0f000000');
+    create({
+      element: el,
+      corsRequestFn: corsRequestFn,
+      apiUrl: 'http://localhost:3000/',
+      locale: 'en'
+    });
+
+    el.querySelectorAll('input')[1].value = 'answer 1';
+    el.querySelectorAll('input')[2].value = 'answer 2';
+    var event = jsdomDocument.createEvent('HTMLEvents');
+    event.initEvent('submit', true, true);
+    el.querySelector('form').dispatchEvent(event);
+    expect(el.querySelector('.polldozer-js-submit').getAttribute('disabled')).to.equal(null);
+    expect(el.querySelector('.polldozer-js-title-input').getAttribute('disabled')).to.equal(null);
+    expect(el.querySelectorAll('.polldozer-js-answer-input')[2].getAttribute('disabled')).to.equal(null);
+  });
 
   it('should show additional choice filed', function(){
     var el = createDefaultEl();

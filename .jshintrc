@@ -7,5 +7,6 @@
   "indent": 2,
   "maxlen": 130,
   "trailing": true,
+  "latedef": true,
   "curly": true
 }

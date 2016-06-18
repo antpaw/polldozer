@@ -55,6 +55,8 @@ module.exports = function(options){
   var selectMinutesElem = element.querySelector('.polldozer-js-select-minutes');
   var changeLengthButton = element.querySelector('.polldozer-js-change-length');
   var addChoiceButton = element.querySelector('.polldozer-js-add-choice');
+  var inputSelector = '.polldozer-js-submit, .polldozer-js-title-input, .polldozer-js-answer-input, .polldozer-js-remove-choice';
+  var disabledInputs = element.querySelectorAll(inputSelector);
 
   var showAdditionalChoiceFiled = function(e){
     e.preventDefault();
@@ -133,6 +135,9 @@ module.exports = function(options){
         answerTitles.push(answerInputs[i].value);
       }
     }
+    for (i = 0; i < disabledInputs.length; i++) {
+      disabledInputs[i].disabled = true;
+    }
     options.corsRequestFn({
       onSuccess: function(poll){
         element.innerHTML = '<h3>' + langStrings.title + '</h3>';
@@ -142,6 +147,9 @@ module.exports = function(options){
         if (xhrData && xhrData.responseJSON && xhrData.responseJSON.errors && xhrData.responseJSON.errors.length) {
           removeClass(errorsElem, 'polldozer-is-hide');
           errorsElem.innerHTML = '<h4 class="polldozer-errors">' + xhrData.responseJSON.errors.join(', ') + '</h4>';
+        }
+        for (i = 0; i < disabledInputs.length; i++) {
+          disabledInputs[i].disabled = false;
         }
       }
     }).post(options.apiUrl + 'api/v1/polls.json', {

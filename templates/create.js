@@ -16,7 +16,7 @@ module.exports = function(langStrings) {
   html += '<form>';
   html += '<div class="polldozer-js-errors polldozer-is-hide"></div>';
   html += '<input class="polldozer-js-title-input polldozer-title-input"';
-  html += ' placeholder="' + langStrings.title + '" name="poll_title" required />';
+  html += ' placeholder="' + langStrings.title + '" name="poll_title" autocomplete="off" required />';
   html += '<ul class="polldozer-answers">';
   for (var i = 0; i < 8; i++) {
     html += '<li class="polldozer-js-choice';
@@ -25,7 +25,7 @@ module.exports = function(langStrings) {
       html += ' polldozer-is-hide';
     }
     html += '">';
-    html += '<input class="polldozer-js-answer-input polldozer-answer-input" ';
+    html += '<input class="polldozer-js-answer-input polldozer-answer-input" autocomplete="off" ';
     html += 'name="answer_titles[' + i + ']" placeholder="' + langStrings.answerTitles[i] + '"';
     if ( ! hideAnswer) {
       html += ' required';
@@ -46,7 +46,7 @@ module.exports = function(langStrings) {
   html += ' ' + langStrings.lengthHours + ': ' + _selectTag('hours', 24);
   html += ' ' + langStrings.lengthMinutes + ': ' + _selectTag('minutes', 60);
   html += '</span></p></ul>';
-  html += '<button class="polldozer-submit">' + langStrings.submit + '</button> ';
+  html += '<button class="polldozer-submit polldozer-js-submit">' + langStrings.submit + '</button> ';
   html += '</form></div>';
   return html;
 };

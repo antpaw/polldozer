@@ -60,6 +60,8 @@ describe('vote poll', function () {
   });
 
   it('should vote', function(done){
+    var el = jsdomDocument.createElement('div');
+    el.setAttribute('data-poll-id', '573a3d2ed1bd031a0f000000');
     var corsRequestFn = function(options) {
       return {
         get: function() {
@@ -86,8 +88,6 @@ describe('vote poll', function () {
       };
     };
 
-    var el = jsdomDocument.createElement('div');
-    el.setAttribute('data-poll-id', '573a3d2ed1bd031a0f000000');
     vote({
       externalLocalStorage: externalLocalStorage,
       element: el,
@@ -193,6 +193,8 @@ describe('vote poll', function () {
   });
 
   it('should render errors on vote', function(done){
+    var el = jsdomDocument.createElement('div');
+    el.setAttribute('data-poll-id', '573a3d2ed1bd031a0f000000');
     var corsRequestFn = function(options) {
       return {
         get: function() {
@@ -217,8 +219,6 @@ describe('vote poll', function () {
       };
     };
 
-    var el = jsdomDocument.createElement('div');
-    el.setAttribute('data-poll-id', '573a3d2ed1bd031a0f000000');
     vote({
       externalLocalStorage: externalLocalStorage,
       element: el,

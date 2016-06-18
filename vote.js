@@ -31,8 +31,13 @@ module.exports = function(options){
   }
   var langStrings = getLang(options.locale);
 
+  var renderResult = function(poll){
+    element.innerHTML = templateStats(poll, langStrings, relativeTime(new Date(poll.valid_until * 1000), options.locale));
+  };
+
   var renderForm = function(poll){
     element.innerHTML = templateVote(poll, langStrings, relativeTime(new Date(poll.valid_until * 1000), options.locale));
+    var disabledInputs = element.querySelectorAll('.polldozer-js-submit, .polldozer-js-answer');
     var submitVote = function(e){
       // TODO: remove `submit` event
       e.preventDefault();
@@ -44,6 +49,9 @@ module.exports = function(options){
         }
       }
       if ( ! answerId) { return; }
+      for (i = 0; i < disabledInputs.length; i++) {
+        disabledInputs[i].disabled = true;
+      }
       options.corsRequestFn({
         onSuccess: function(poll){
           localStorage.setItem('polldozer_' + poll._id, poll.vote_id);
@@ -56,6 +64,11 @@ module.exports = function(options){
           if (xhrData && xhrData.responseJSON && xhrData.responseJSON.errors && xhrData.responseJSON.errors.length) {
             element.innerHTML = '<h4 class="polldozer-errors">' + xhrData.responseJSON.errors.join(', ') + '</h4>';
           }
+          else {
+            for (var i = 0; i < disabledInputs.length; i++) {
+              disabledInputs[i].disabled = false;
+            }
+          }
         }
       }).post(options.apiUrl + 'api/v1/polls/' + pollId + '/vote.json', {
         answer_id: answerId
@@ -63,15 +76,11 @@ module.exports = function(options){
       return false;
     };
     if (element.addEventListener) {
-      element.querySelector('form').addEventListener('submit', submitVote, false);
+      element.querySelector('.polldozer-js-form').addEventListener('submit', submitVote, false);
     }
     else {
-      element.querySelector('form').attachEvent('onsubmit', submitVote);
+      element.querySelector('.polldozer-js-form').attachEvent('onsubmit', submitVote);
     }
-  };
-
-  var renderResult = function(poll){
-    element.innerHTML = templateStats(poll, langStrings, relativeTime(new Date(poll.valid_until * 1000), options.locale));
   };
 
   var initWithData = function(poll){
