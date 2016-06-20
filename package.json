@@ -1,7 +1,7 @@
 {
   "name": "polldozer",
   "version": "1.0.1",
-  "description": "",
+  "description": "Lightweight Polldozer client to create and vote on polls with Polldozer API",
   "main": "index.js",
   "scripts": {
     "build": "webpack",
@@ -10,6 +10,13 @@
     "lint": "jshint **.js **/*.js **/**/*.js",
     "coverage": "istanbul cover node_modules/.bin/_mocha"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com/antpaw/polldozer.git"
+  },
+  "keywords": [
+    "poll", "Polldozer"
+  ],
   "author": "Anton Pawlik <anton.pawlik@gmail.com> (http://antpaw.org)",
   "license": "MIT",
   "devDependencies": {
