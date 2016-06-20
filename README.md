@@ -73,6 +73,11 @@ type: `String`
 default: `undefined`  
 URL to [Polldozer API](https://github.com/antpaw/polldozer-api)
 
+#### `pollData` (optional)
+type: `PlainObject`  
+default: `undefined`  
+Bootstraped poll object
+
 #### `locale` (optional)
 type: `String`  
 default: `'en'`  
