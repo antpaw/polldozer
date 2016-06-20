@@ -3,6 +3,9 @@
   "version": "1.0.1",
   "description": "Lightweight Polldozer client to create and vote on polls with Polldozer API",
   "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
   "scripts": {
     "build": "webpack",
     "test": "mocha",
@@ -12,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com/antpaw/polldozer.git"
+    "url": "git+ssh://git@github.com/antpaw/polldozer.git"
   },
   "keywords": [
     "poll", "Polldozer"
@@ -29,5 +32,8 @@
     "mocha": "^2.4.5",
     "should": "^8.2.2",
     "webpack": "^1.13.1"
+  },
+  "bugs": {
+    "url": "https://github.com/antpaw/polldozer/issues"
   }
 }
