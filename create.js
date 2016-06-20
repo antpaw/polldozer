@@ -140,7 +140,7 @@ module.exports = function(options){
     }
     options.corsRequestFn({
       onSuccess: function(poll){
-        element.innerHTML = '<h3>' + langStrings.title + '</h3>';
+        element.innerHTML = '<h3>' + langStrings.success + '</h3>';
         options.onCreate(poll);
       },
       onFailure: function(xhrData){
@@ -165,14 +165,14 @@ module.exports = function(options){
   };
 
   if (element.addEventListener) {
-    element.querySelector('form').addEventListener('submit', submitPoll, false);
+    element.querySelector('.polldozer-js-form').addEventListener('submit', submitPoll, false);
     selectDaysElem.addEventListener('change', selectDaysChange);
     selectHoursElem.addEventListener('change', selectHoursChange);
     changeLengthButton.addEventListener('click', showLengthInputs);
     addChoiceButton.addEventListener('click', showAdditionalChoiceFiled);
   }
   else {
-    element.querySelector('form').attachEvent('onsubmit', submitPoll);
+    element.querySelector('. ').attachEvent('onsubmit', submitPoll);
     selectDaysElem.attachEvent('onchange', selectDaysChange);
     selectHoursElem.attachEvent('onchange', selectHoursChange);
     changeLengthButton.attachEvent('onclick', showLengthInputs);
