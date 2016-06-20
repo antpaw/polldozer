@@ -164,3 +164,17 @@ default: `'en'`
 type: `Function`  
 default: `undefined`  
 Callback function that is called after a poll was created successfully
+
+
+## Stylesheets
+
+SASS required. To provide basic styling and display logic add stylesheets with:
+
+```css
+@import './node_modules/polldozer/stylesheets/create.scss';
+@import './node_modules/polldozer/stylesheets/vote.scss';
+
+/* or include it with the ~ syntax if you are building with webpack and sass-loader */
+@import '~polldozer/stylesheets/create.scss';
+@import '~polldozer/stylesheets/vote.scss';
+```
