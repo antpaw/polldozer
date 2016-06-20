@@ -233,6 +233,63 @@ describe('vote poll', function () {
     el.querySelector('form').dispatchEvent(event);
   });
 
+  it('should disable inputs on "vote"', function(){
+    var el = jsdomDocument.createElement('div');
+    el.setAttribute('data-poll-id', '573a3d2ed1bd031a0f000000');
+    var corsRequestFn = function(options) {
+      return {
+        post: function() {
+        }
+      };
+    };
+
+    vote({
+      externalLocalStorage: externalLocalStorage,
+      element: el,
+      corsRequestFn: corsRequestFn,
+      apiUrl: 'http://localhost:3000/',
+      pollData: poll,
+      locale: 'en'
+    });
+
+    el.querySelectorAll('input')[1].checked = true;
+    var event = jsdomDocument.createEvent('HTMLEvents');
+    event.initEvent('submit', true, true);
+    el.querySelector('form').dispatchEvent(event);
+    expect(el.querySelector('.polldozer-js-submit').disabled).to.equal(true);
+    expect(el.querySelectorAll('.polldozer-js-answer')[0].disabled).to.equal(true);
+    expect(el.querySelectorAll('.polldozer-js-answer')[1].disabled).to.equal(true);
+  });
+
+  it('should reenable inputs on "vote" fail', function(){
+    var el = jsdomDocument.createElement('div');
+    el.setAttribute('data-poll-id', '573a3d2ed1bd031a0f000000');
+    var corsRequestFn = function(options) {
+      return {
+        post: function() {
+          options.onFailure({});
+        }
+      };
+    };
+
+    vote({
+      externalLocalStorage: externalLocalStorage,
+      element: el,
+      pollData: poll,
+      corsRequestFn: corsRequestFn,
+      apiUrl: 'http://localhost:3000/',
+      locale: 'en'
+    });
+
+    el.querySelectorAll('input')[1].checked = true;
+    var event = jsdomDocument.createEvent('HTMLEvents');
+    event.initEvent('submit', true, true);
+    el.querySelector('form').dispatchEvent(event);
+    expect(el.querySelector('.polldozer-js-submit').getAttribute('disabled')).to.equal(null);
+    expect(el.querySelectorAll('.polldozer-js-answer')[0].getAttribute('disabled')).to.equal(null);
+    expect(el.querySelectorAll('.polldozer-js-answer')[1].getAttribute('disabled')).to.equal(null);
+  });
+
   it('should not vote with empty answerId', function(){
     var corsRequestFn = function(options) {
       return {
