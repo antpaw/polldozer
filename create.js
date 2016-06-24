@@ -14,7 +14,7 @@ function getLang(locale) {
       lengthDays: 'Tage',
       lengthHours: 'Stunden',
       lengthMinutes: 'Min',
-      success: 'Poll created',
+      success: 'Umfrage wurde erstellt!',
       submit: 'Umfrage hinzufügen'
     },
     en: {
@@ -29,7 +29,7 @@ function getLang(locale) {
       lengthDays: 'Days',
       lengthHours: 'Hours',
       lengthMinutes: 'Min',
-      success: 'Poll created',
+      success: 'Poll created!',
       submit: 'Add Poll'
     }
   };
