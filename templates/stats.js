@@ -3,15 +3,16 @@ var metaPartial = require('./_meta.js');
 
 module.exports = function(poll, langStrings, validUntil) {
   var answer;
-  var html = '<div class="polldozer-holder">';
+  var html = '<div class="polldozer">';
   html += '<h3 class="polldozer-title">' + _(poll.title) + '</h3>';
   html += '<ul class="polldozer-answers">';
   if (poll.answers) {
     for (var i = 0; i < poll.answers.length; i++) {
       answer = poll.answers[i];
-      html += '<li class="polldozer-answer">';
+      html += '<li class="polldozer-answer';
+      html += (answer.winner ? ' polldozer-answer-winner' : '') + '">';
       html += '<div class="polldozer-answer-bar';
-      html += (answer.winner ? ' polldozer-answer-winner' : '') + (answer.users_vote ? ' polldozer-answer-users-vote' : '') + '"';
+      html += (answer.users_vote ? ' polldozer-answer-users-vote' : '') + '"';
       html += ' style="width: ' + answer.percent + '%"></div>';
       html += '<div class="polldozer-stats-holder">';
       html += '<span class="polldozer-answer-percent polldozer-answer-left-box"><strong>' + answer.percent + '</strong>%</span> ';

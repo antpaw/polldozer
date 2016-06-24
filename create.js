@@ -140,7 +140,7 @@ module.exports = function(options){
     }
     options.corsRequestFn({
       onSuccess: function(poll){
-        element.innerHTML = '<h3>' + langStrings.success + '</h3>';
+        element.innerHTML = '<div class="polldozer"><h3>' + langStrings.success + '</h3></div>';
         options.onCreate(poll);
       },
       onFailure: function(xhrData){

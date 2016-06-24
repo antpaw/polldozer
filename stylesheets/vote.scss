@@ -50,17 +50,16 @@
   border-radius: 3px;
   background-color: #E1E8ED;
 }
+.polldozer-answer-winner .polldozer-answer-bar {
+  background-color: #77C7F7;
+}
 .polldozer-stats-holder {
   position: relative;
-}
-.polldozer-answer-winner {
-  background-color: #77C7F7;
 }
 .polldozer-answer-users-vote:after {
   content: '✓';
   position: absolute;
-  top: 0.5em;
-  top: 0.5rem;
+  top: 0.15em;
   font-weight: bold;
   font-size: 1.5em;
   right: 1em;

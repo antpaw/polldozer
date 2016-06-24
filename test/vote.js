@@ -166,6 +166,30 @@ describe('vote poll', function () {
     expect(el.querySelectorAll('li')[0].innerHTML).to.contain('100%');
   });
 
+  it('should render winner', function(){
+    var corsRequestFn = function(options) {
+      return {
+        get: function() {
+          options.onSuccess(poll2);
+        },
+        post: function() {
+        }
+      };
+    };
+
+    var el = jsdomDocument.createElement('div');
+    el.setAttribute('data-poll-id', '573a3d2ed1bd031a0f000000');
+    vote({
+      externalLocalStorage: externalLocalStorage,
+      element: el,
+      corsRequestFn: corsRequestFn,
+      apiUrl: 'http://localhost:3000/',
+      locale: 'en'
+    });
+
+    expect(el.querySelectorAll('.polldozer-answer-winner').length).to.equal(1);
+  });
+
   it('should render without xhr', function(){
     var corsRequestFn = function() {
       return {
@@ -236,7 +260,7 @@ describe('vote poll', function () {
   it('should disable inputs on "vote"', function(){
     var el = jsdomDocument.createElement('div');
     el.setAttribute('data-poll-id', '573a3d2ed1bd031a0f000000');
-    var corsRequestFn = function(options) {
+    var corsRequestFn = function() {
       return {
         post: function() {
         }

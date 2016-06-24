@@ -4,7 +4,7 @@ var metaPartial = require('./_meta.js');
 module.exports = function(poll, langStrings, validUntil) {
   var voteId;
   var answer;
-  var html = '<div class="polldozer-holder">';
+  var html = '<div class="polldozer">';
   html += '<form class="polldozer-js-form">';
   html += '<h3 class="polldozer-title">' + _(poll.title) + '</h3>';
   html += '<ul class="polldozer-answers">';

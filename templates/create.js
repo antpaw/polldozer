@@ -12,7 +12,7 @@ module.exports = function(langStrings) {
   };
 
   var hideAnswer = false;
-  var html = '<div class="polldozer-holder">';
+  var html = '<div class="polldozer">';
   html += '<form class="polldozer-js-form">';
   html += '<div class="polldozer-js-errors polldozer-is-hide"></div>';
   html += '<input class="polldozer-js-title-input polldozer-title-input"';

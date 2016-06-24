@@ -62,7 +62,8 @@ module.exports = function(options){
         },
         onFailure: function(xhrData){
           if (xhrData && xhrData.responseJSON && xhrData.responseJSON.errors && xhrData.responseJSON.errors.length) {
-            element.innerHTML = '<h4 class="polldozer-errors">' + xhrData.responseJSON.errors.join(', ') + '</h4>';
+            var errors = xhrData.responseJSON.errors.join(', ');
+            element.innerHTML = '<div class="polldozer"><h4 class="polldozer-errors">' + errors + '</h4></div>';
           }
           else {
             for (var i = 0; i < disabledInputs.length; i++) {
