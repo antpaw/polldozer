@@ -1,6 +1,6 @@
 {
   "name": "polldozer",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Lightweight Polldozer client to create and vote on polls with Polldozer API",
   "main": "index.js",
   "directories": {
@@ -18,7 +18,8 @@
     "url": "git+ssh://git@github.com/antpaw/polldozer.git"
   },
   "keywords": [
-    "poll", "Polldozer"
+    "poll",
+    "Polldozer"
   ],
   "author": "Anton Pawlik <anton.pawlik@gmail.com> (http://antpaw.org)",
   "license": "MIT",
