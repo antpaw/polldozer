@@ -305,6 +305,18 @@ describe('create poll', function () {
     expect(button.classList.contains('polldozer-is-hide')).to.equal(false);
   });
 
+  it('should render poll with "pollData"', function(){
+    var el = createDefaultEl({pollData: poll});
+    expect(el.querySelector('.polldozer-js-title-input').value).to.equal('yoo');
+    expect(el.querySelectorAll('.polldozer-js-answer-input')[1].value).to.equal('nope');
+  });
+
+  it('should render poll without "pollData"', function(){
+    var el = createDefaultEl();
+    expect(el.querySelector('.polldozer-js-title-input').value).to.equal('');
+    expect(el.querySelectorAll('.polldozer-js-answer-input')[1].value).to.equal('');
+  });
+
   it('should open time length inputs', function(){
     var el = createDefaultEl();
 
@@ -313,7 +325,7 @@ describe('create poll', function () {
     expect(el.querySelector('.polldozer-js-lenght-inputs').classList.contains('polldozer-is-hide')).to.equal(false);
   });
 
-  it('should not change hours on day change to zeor', function(){
+  it('should not change hours on day change to zero', function(){
     var el = createDefaultEl();
     var selectDaysElem = el.querySelector('.polldozer-js-select-days');
     var selectHoursElem = el.querySelector('.polldozer-js-select-hours');
@@ -326,7 +338,7 @@ describe('create poll', function () {
     expect(selectHoursElem.value).to.equal('0');
   });
 
-  it('should change hours on day change to zeor', function(){
+  it('should change hours on day change to zero', function(){
     var el = createDefaultEl();
     var selectDaysElem = el.querySelector('.polldozer-js-select-days');
     var selectHoursElem = el.querySelector('.polldozer-js-select-hours');
@@ -339,7 +351,7 @@ describe('create poll', function () {
     expect(selectHoursElem.value).to.equal('1');
   });
 
-  it('should not change minutes on hours change to zeor', function(){
+  it('should not change minutes on hours change to zero', function(){
     var el = createDefaultEl();
     var selectDaysElem = el.querySelector('.polldozer-js-select-days');
     var selectHoursElem = el.querySelector('.polldozer-js-select-hours');
@@ -355,7 +367,7 @@ describe('create poll', function () {
     expect(selectMinutesElem.value).to.equal('10');
   });
 
-  it('should change minutes on hours change to zeor', function(){
+  it('should change minutes on hours change to zero', function(){
     var el = createDefaultEl();
     var selectDaysElem = el.querySelector('.polldozer-js-select-days');
     var selectHoursElem = el.querySelector('.polldozer-js-select-hours');

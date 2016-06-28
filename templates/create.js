@@ -1,4 +1,4 @@
-module.exports = function(langStrings) {
+module.exports = function(poll, langStrings) {
   var _selectTag = function(name, maxLength, selectedIndex) {
     var selectHtml = '<select class="polldozer-js-select-' + name + '" name="' + name + '">';
     for (var i = 0; i < maxLength; i++) {
@@ -15,18 +15,23 @@ module.exports = function(langStrings) {
   var html = '<div class="polldozer">';
   html += '<form class="polldozer-js-form">';
   html += '<div class="polldozer-js-errors polldozer-is-hide"></div>';
-  html += '<input class="polldozer-js-title-input polldozer-title-input"';
+  html += '<input class="polldozer-js-title-input polldozer-title-input" value="' + (poll.title || '') + '"';
   html += ' placeholder="' + langStrings.title + '" name="poll_title" autocomplete="off" required />';
   html += '<ul class="polldozer-answers">';
+  var pollAnswers = poll.answers || [];
   for (var i = 0; i < 8; i++) {
+    var pollAnswer = pollAnswers[i] || {};
     html += '<li class="polldozer-js-choice';
-    hideAnswer = i > 1;
+    if (i > 1) {
+       hideAnswer = ! pollAnswer.title;
+    }
     if (hideAnswer) {
       html += ' polldozer-is-hide';
     }
     html += '">';
-    html += '<input class="polldozer-js-answer-input polldozer-answer-input" autocomplete="off" ';
-    html += 'name="answer_titles[' + i + ']" placeholder="' + langStrings.answerTitles[i] + '"';
+    html += '<input class="polldozer-js-answer-input polldozer-answer-input" autocomplete="off"';
+    html += '  value="' + (pollAnswer.title || '') + '"';
+    html += ' name="answer_titles[' + i + ']" placeholder="' + langStrings.answerTitles[i] + '"';
     if ( ! hideAnswer) {
       html += ' required';
     }

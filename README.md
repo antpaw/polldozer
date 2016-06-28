@@ -170,6 +170,10 @@ type: `Function`
 default: `undefined`  
 Callback function that is called after a poll was created successfully
 
+#### `pollData` (optional)
+type: `PlainObject`  
+default: `undefined`  
+Poll object that will be used to populate the input field with it's values
 
 ## Stylesheets
 
