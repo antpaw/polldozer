@@ -172,7 +172,7 @@ module.exports = function(options){
     addChoiceButton.addEventListener('click', showAdditionalChoiceFiled);
   }
   else {
-    element.querySelector('. ').attachEvent('onsubmit', submitPoll);
+    element.querySelector('.polldozer-js-form').attachEvent('onsubmit', submitPoll);
     selectDaysElem.attachEvent('onchange', selectDaysChange);
     selectHoursElem.attachEvent('onchange', selectHoursChange);
     changeLengthButton.attachEvent('onclick', showLengthInputs);
