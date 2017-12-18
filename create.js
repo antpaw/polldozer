@@ -47,7 +47,7 @@ function addClass(elem, className) {
 module.exports = function(options){
   var element = options.element;
   var langStrings = getLang(options.locale);
-  element.innerHTML = template(options.pollData || {}, langStrings);
+  element.innerHTML = template(options.pollData || {}, langStrings);
   var errorsElem = element.querySelector('.polldozer-js-errors');
   var titleInputElem = element.querySelector('.polldozer-js-title-input');
   var selectDaysElem = element.querySelector('.polldozer-js-select-days');

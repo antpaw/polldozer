@@ -85,7 +85,7 @@ module.exports = function(options){
   };
 
   var initWithData = function(poll){
-    if (poll.ip_has_voted || poll.finished || ! localStorage) {
+    if (poll.ip_has_voted || poll.finished || ! localStorage) {
       renderResult(poll);
     }
     else {
