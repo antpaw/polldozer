@@ -1,6 +1,6 @@
 {
   "name": "polldozer",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Lightweight Polldozer client to create and vote on polls with Polldozer API",
   "main": "index.js",
   "directories": {
